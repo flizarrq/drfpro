@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     # my_apps
     'core',
+    'apps.users',
     'apps.auto_cars',
     'apps.cars'
 ]
