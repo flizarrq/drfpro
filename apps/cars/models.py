@@ -8,6 +8,8 @@ from apps.auto_parks.models import AutoParksModel
 
 from .managers import CarsManager
 
+from .choises.body_type_choices import BodyTypeChoices
+
 
 class CarsModel(BaseModel):
     class Meta:
@@ -17,6 +19,7 @@ class CarsModel(BaseModel):
     brand = models.CharField(max_length=20, validators=[V.RegexValidator(*Regex.BRAND.value)])
     price = models.IntegerField()
     year = models.IntegerField()
-    auto_park = models.ForeignKey(AutoParksModel, on_delete=models.CASCADE, related_name='cars')
+    body_type = models.CharField(max_length=10, choices=BodyTypeChoices.choices)
+    # auto_park = models.ForeignKey(AutoParksModel, on_delete=models.CASCADE, related_name='cars')
 
     objects = CarsManager()

@@ -4,6 +4,8 @@ from rest_framework import serializers
 
 from .models import ProfileModel
 
+from django.db.transaction import atomic
+
 UserModel = get_user_model()
 
 
@@ -33,6 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
             }
         }
 
+    @atomic
     def create(self, validated_data):
         profile = validated_data.pop('profile')
         user = UserModel.objects.create_user(**validated_data)

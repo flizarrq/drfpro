@@ -7,14 +7,18 @@ from apps.cars.serializers import CarsSerializer
 from .models import AutoParksModel
 from .serializers import AutoParkSerializer
 
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser, AllowAny
+
 
 class AutoParkListCreateView(ListCreateAPIView):
     queryset = AutoParksModel.objects.all()
     serializer_class = AutoParkSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class AutoParkAddCarView(GenericAPIView):
     queryset = AutoParksModel.objects.all()
+    serializer_class = AutoParkSerializer
 
     def post(self, *args, **kwargs):
         auto_park = self.get_object()

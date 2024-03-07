@@ -11,6 +11,7 @@ from .managers import UserManager
 class UserModel(AbstractBaseUser, PermissionsMixin, BaseModel):
     class Meta:
         db_table = 'auth_user'
+        ordering = ['-id']
 
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
