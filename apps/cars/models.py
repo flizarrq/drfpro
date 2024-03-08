@@ -5,6 +5,7 @@ from core.enums.regex_enum import Regex
 from core.models import BaseModel
 
 from apps.auto_parks.models import AutoParksModel
+from core.services.upload_service import FileService
 
 from .managers import CarsManager
 
@@ -21,5 +22,5 @@ class CarsModel(BaseModel):
     year = models.IntegerField()
     body_type = models.CharField(max_length=10, choices=BodyTypeChoices.choices)
     # auto_park = models.ForeignKey(AutoParksModel, on_delete=models.CASCADE, related_name='cars')
-
+    photo = models.ImageField(blank=True, upload_to=FileService.upload_car_photo)
     objects = CarsManager()

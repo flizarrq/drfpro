@@ -13,8 +13,18 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileModel
         fields = (
-            'id', 'name', 'surname', 'age'
+            'id', 'name', 'surname', 'age', 'avatar'
         )
+
+
+class ProfileAvatarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfileModel
+        fields = ('avatar',)
+        extra_kwargs = {
+            'avatars': {
+                'required': True
+            }}
 
 
 class UserSerializer(serializers.ModelSerializer):
